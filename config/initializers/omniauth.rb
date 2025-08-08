@@ -12,3 +12,6 @@ end
 
 # Allow all requests in development
 OmniAuth.config.allowed_request_methods = [:post, :get]
+
+# Silence the GET warning for OAuth callbacks
+OmniAuth.config.silence_get_warning = true
