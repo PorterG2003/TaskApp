@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :tasks
+  resources :tasks, except: [:new]
   get "offline", to: "pages#offline"
+
+  # Calendar
+  get "calendar", to: "calendar#index"
+  post "calendar/generate_task", to: "calendar#generate_task"
   
   # Component preview (development only)
   get "components", to: "components#index" if Rails.env.development?

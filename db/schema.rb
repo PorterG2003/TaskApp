@@ -14,12 +14,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_08_001408) do
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.boolean "completed"
     t.integer "priority"
     t.date "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.string "calendar_event_id"
+    t.string "status", default: "pending"
+    t.index ["status"], name: "index_tasks_on_status"
+    t.index ["user_id", "calendar_event_id"], name: "index_tasks_on_user_id_and_calendar_event_id", unique: true
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 

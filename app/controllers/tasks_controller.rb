@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.build(task_params)
     
     if @task.save
-      redirect_to tasks_path, notice: 'Task was successfully created.'
+      redirect_to tasks_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: 'Task was successfully updated.'
+      redirect_to tasks_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: 'Task was successfully deleted.'
+    redirect_to tasks_path
   end
 
   private
@@ -47,6 +47,13 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :completed, :priority, :due_date)
+    permitted = params.require(:task).permit(:title, :description, :priority, :due_date)
+    
+    # Handle the completed toggle if it's present
+    if params[:task].key?(:completed)
+      permitted[:status] = params[:task][:completed] == "true" ? "completed" : "pending"
+    end
+    
+    permitted
   end
 end

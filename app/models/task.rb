@@ -1,13 +1,23 @@
 class Task < ApplicationRecord
   belongs_to :user
-  validates :title, presence: true, length: { minimum: 3, maximum: 100 }
-  validates :priority, inclusion: { in: 1..5 }
   
-  scope :completed, -> { where(completed: true) }
-  scope :pending, -> { where(completed: false) }
+  # Add calendar_event_id to track which event generated this task
+  validates :calendar_event_id, uniqueness: { scope: :user_id, allow_nil: true }
+  
+  # Status validation
+  validates :status, presence: true, inclusion: { in: %w[pending completed] }
+  
+  # Scopes for status
+  scope :pending, -> { where(status: "pending") }
+  scope :completed, -> { where(status: "completed") }
+  validates :title, presence: true, length: { minimum: 3, maximum: 100 }
   scope :by_priority, -> { order(:priority, :created_at) }
   scope :by_due_date, -> { order(:due_date, :created_at) }
   
+  def completed?
+    status == "completed"
+  end
+
   def overdue?
     due_date && due_date < Date.current && !completed?
   end
