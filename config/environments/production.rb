@@ -3,16 +3,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Debug database configuration
-  if ENV['DATABASE_URL'].present?
-    db_url = ENV['DATABASE_URL']
-    # Log the database URL without sensitive parts
-    safe_url = db_url.gsub(/\/\/[^:]+:[^@]+@/, '//***:***@')
-    Rails.logger.info "DATABASE_URL is set: #{safe_url}"
-  else
-    Rails.logger.error "DATABASE_URL is NOT set!"
-  end
-
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
