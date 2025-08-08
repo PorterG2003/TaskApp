@@ -43,8 +43,8 @@ export default class extends Controller {
         <a href="/tasks" class="text-gray-700 p-3 rounded-xl flex items-center justify-center transition duration-200 hover:bg-white/20" title="Tasks">
           <i class="fas fa-tasks text-lg"></i>
         </a>
-        <a href="/tasks/new" class="text-gray-700 p-3 rounded-xl flex items-center justify-center transition duration-200 hover:bg-white/20" title="New Task">
-          <i class="fas fa-plus text-lg"></i>
+        <a href="/calendar" class="text-gray-700 p-3 rounded-xl flex items-center justify-center transition duration-200 hover:bg-white/20" title="Calendar">
+          <i class="fas fa-calendar-week text-lg"></i>
         </a>
         <a href="/components" class="text-gray-700 p-3 rounded-xl flex items-center justify-center transition duration-200 hover:bg-white/20" title="Components">
           <i class="fas fa-cube text-lg"></i>
@@ -84,9 +84,9 @@ export default class extends Controller {
           <i class="fas fa-tasks text-lg mr-3"></i>
           <span class="font-medium">Tasks</span>
         </a>
-        <a href="/tasks/new" class="text-gray-700 px-4 py-3 rounded-xl flex items-center transition duration-200 hover:bg-white/20">
-          <i class="fas fa-plus text-lg mr-3"></i>
-          <span class="font-medium">New Task</span>
+        <a href="/calendar" class="text-gray-700 px-4 py-3 rounded-xl flex items-center transition duration-200 hover:bg-white/20">
+          <i class="fas fa-calendar-week text-lg mr-3"></i>
+          <span class="font-medium">Calendar</span>
         </a>
         <a href="/components" class="text-gray-700 px-4 py-3 rounded-xl flex items-center transition duration-200 hover:bg-white/20">
           <i class="fas fa-cube text-lg mr-3"></i>
