@@ -469,7 +469,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
-  pg
+  pg (~> 1.5)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
