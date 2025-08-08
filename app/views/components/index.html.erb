@@ -1,0 +1,408 @@
+<!-- Adobe Creative Cloud Inspired Component Library -->
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+  <!-- Header -->
+  <div class="bg-black/20 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">T</span>
+          </div>
+          <h1 class="text-xl font-semibold text-white">Component Library</h1>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-sm text-gray-300">TaskApp Components</span>
+          <%= link_to "/", class: "text-sm text-blue-400 hover:text-blue-300 transition-colors" do %>
+            Back to App
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 py-8">
+    
+    <!-- Hero Section -->
+    <section class="mb-12">
+      <div class="glass-heavy rounded-3xl p-8 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-white/20 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-4 right-4 w-16 h-16 bg-blue-500/20 rounded-full blur-xl"></div>
+        <div class="absolute bottom-4 left-4 w-20 h-20 bg-purple-500/20 rounded-full blur-xl"></div>
+        
+        <div class="relative">
+          <h2 class="text-3xl font-bold text-white mb-4">ViewComponent Design System</h2>
+          <p class="text-lg text-gray-300 mb-6">A modern component library built with Rails ViewComponent and Tailwind CSS</p>
+          <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+              <span class="text-sm text-gray-300">Active</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span class="text-sm text-gray-300">12 Components</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Component Grid -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-semibold text-white">Available Components</h3>
+        <span class="text-sm text-gray-400">Click to preview</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Button Component Card -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all duration-300 group cursor-pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-blue-400 text-lg">🔘</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Button</h4>
+                <p class="text-sm text-gray-400">Interactive buttons</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-3 mb-4">
+            <%= render Ui::DemoButton.new(text: "Primary", variant: :primary, size: :sm) %>
+            <%= render Ui::DemoButton.new(text: "Glass Effect", variant: :primary, size: :sm, glass: true) %>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500">Ui::DemoButton</span>
+            <button class="text-xs text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100">View Details</button>
+          </div>
+        </div>
+
+        <!-- Input Component Card -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all duration-300 group cursor-pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-green-400 text-lg">📝</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Input</h4>
+                <p class="text-sm text-gray-400">Form inputs</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-3 mb-4">
+            <%= render Ui::Input.new(placeholder: "Enter text...", size: :sm) %>
+            <%= render Ui::Input.new(placeholder: "Glass input...", size: :sm, glass: true) %>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500">Ui::Input</span>
+            <button class="text-xs text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100">View Details</button>
+          </div>
+        </div>
+
+        <!-- Card Component Card -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all duration-300 group cursor-pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-purple-400 text-lg">📄</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Card</h4>
+                <p class="text-sm text-gray-400">Content containers</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-3 mb-4">
+            <div class="h-8 bg-white/10 rounded border border-white/20"></div>
+            <div class="h-8 bg-white/10 rounded border border-white/20"></div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500">Ui::Card</span>
+            <button class="text-xs text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100">View Details</button>
+          </div>
+        </div>
+
+        <!-- Badge Component Card -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all duration-300 group cursor-pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-amber-400 text-lg">🏷️</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Badge</h4>
+                <p class="text-sm text-gray-400">Status indicators</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-3 mb-4">
+            <%= render Ui::Badge.new(text: "New", variant: :success, size: :sm) %>
+            <%= render Ui::Badge.new(text: "Glass", variant: :primary, size: :sm, glass: true) %>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500">Ui::Badge</span>
+            <button class="text-xs text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100">View Details</button>
+          </div>
+        </div>
+
+        <!-- Avatar Component Card -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all duration-300 group cursor-pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-pink-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-pink-400 text-lg">👤</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Avatar</h4>
+                <p class="text-sm text-gray-400">User profiles</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-3 mb-4">
+            <%= render Ui::Avatar.new(fallback: "P", size: :sm) %>
+            <%= render Ui::Avatar.new(fallback: "A", size: :sm, glass: true) %>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500">Ui::Avatar</span>
+            <button class="text-xs text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100">View Details</button>
+          </div>
+        </div>
+
+        <!-- Glass Effects Card -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all duration-300 group cursor-pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-purple-400 text-lg">✨</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Glass Effects</h4>
+                <p class="text-sm text-gray-400">Glassmorphism utilities</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <div class="glass-light p-3 rounded-lg text-center">
+              <span class="text-xs text-gray-700">Light</span>
+            </div>
+            <div class="glass-heavy p-3 rounded-lg text-center">
+              <span class="text-xs text-white">Heavy</span>
+            </div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500">CSS Utilities</span>
+            <button class="text-xs text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100">View Details</button>
+          </div>
+        </div>
+
+        <!-- Color System Card -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 hover:border-white/30 transition-all duration-300 group cursor-pointer">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-green-400 text-lg">🎨</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Color System</h4>
+                <p class="text-sm text-gray-400">Design tokens</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+          </div>
+          
+          <div class="flex gap-1 mb-4">
+            <div class="w-6 h-6 bg-blue-500 rounded"></div>
+            <div class="w-6 h-6 bg-green-500 rounded"></div>
+            <div class="w-6 h-6 bg-amber-500 rounded"></div>
+            <div class="w-6 h-6 bg-red-500 rounded"></div>
+            <div class="w-6 h-6 bg-purple-500 rounded"></div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-500">5 Color Variants</span>
+            <button class="text-xs text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100">View Details</button>
+          </div>
+        </div>
+
+        <!-- Forms Card (Coming Soon) -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 opacity-60 cursor-not-allowed">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-gray-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-gray-400 text-lg">📝</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-300">Forms</h4>
+                <p class="text-sm text-gray-500">Input components</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-2 mb-4">
+            <div class="h-8 bg-gray-600/30 rounded"></div>
+            <div class="h-8 bg-gray-600/30 rounded"></div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-600">Coming Soon</span>
+            <span class="text-xs text-gray-600">Install</span>
+          </div>
+        </div>
+
+        <!-- Layout Card (Coming Soon) -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 opacity-60 cursor-not-allowed">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-gray-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-gray-400 text-lg">📐</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-300">Layout</h4>
+                <p class="text-sm text-gray-500">Grid & containers</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-1 mb-4">
+            <div class="h-6 bg-gray-600/30 rounded"></div>
+            <div class="h-6 bg-gray-600/30 rounded"></div>
+            <div class="h-6 bg-gray-600/30 rounded"></div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-600">Coming Soon</span>
+            <span class="text-xs text-gray-600">Install</span>
+          </div>
+        </div>
+
+        <!-- Navigation Card (Coming Soon) -->
+        <div class="glass-medium rounded-2xl p-6 border border-white/20 opacity-60 cursor-not-allowed">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-gray-500/20 rounded-xl flex items-center justify-center">
+                <span class="text-gray-400 text-lg">🧭</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-300">Navigation</h4>
+                <p class="text-sm text-gray-500">Menus & breadcrumbs</p>
+              </div>
+            </div>
+            <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+          </div>
+          
+          <div class="space-y-1 mb-4">
+            <div class="h-3 bg-gray-600/30 rounded w-3/4"></div>
+            <div class="h-3 bg-gray-600/30 rounded w-1/2"></div>
+            <div class="h-3 bg-gray-600/30 rounded w-2/3"></div>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-gray-600">Coming Soon</span>
+            <span class="text-xs text-gray-600">Install</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Component Details Section -->
+    <section class="mb-12">
+      <h3 class="text-xl font-semibold text-white mb-6">Component Showcase</h3>
+      
+      <!-- Button Component Detailed View -->
+      <div class="glass-medium rounded-3xl p-8 border border-white/20 mb-8">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
+            <span class="text-blue-400 text-xl">🔘</span>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white">Button Component</h4>
+            <p class="text-sm text-gray-400">Customizable button with multiple variants and glass effects</p>
+          </div>
+        </div>
+
+        <!-- Variants Demo -->
+        <div class="space-y-6">
+          <div>
+            <h5 class="text-sm font-medium text-gray-300 mb-3">Standard Variants</h5>
+            <div class="flex flex-wrap gap-3">
+              <%= render Ui::DemoButton.new(text: "Primary", variant: :primary) %>
+              <%= render Ui::DemoButton.new(text: "Secondary", variant: :secondary) %>
+              <%= render Ui::DemoButton.new(text: "Success", variant: :success) %>
+              <%= render Ui::DemoButton.new(text: "Warning", variant: :warning) %>
+              <%= render Ui::DemoButton.new(text: "Danger", variant: :danger) %>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="text-sm font-medium text-gray-300 mb-3">Glass Effect Variants</h5>
+            <div class="relative p-6 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl border border-white/10">
+              <div class="flex flex-wrap gap-3">
+                <%= render Ui::DemoButton.new(text: "Glass Primary", variant: :primary, glass: true) %>
+                <%= render Ui::DemoButton.new(text: "Glass Success", variant: :success, glass: true) %>
+                <%= render Ui::DemoButton.new(text: "Glass Warning", variant: :warning, glass: true) %>
+                <%= render Ui::DemoButton.new(text: "Glass Danger", variant: :danger, glass: true) %>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h5 class="text-sm font-medium text-gray-300 mb-3">Size Variants</h5>
+            <div class="flex flex-wrap items-center gap-3">
+              <%= render Ui::DemoButton.new(text: "Extra Small", variant: :primary, size: :xs) %>
+              <%= render Ui::DemoButton.new(text: "Small", variant: :primary, size: :sm) %>
+              <%= render Ui::DemoButton.new(text: "Medium", variant: :primary, size: :md) %>
+              <%= render Ui::DemoButton.new(text: "Large", variant: :primary, size: :lg) %>
+              <%= render Ui::DemoButton.new(text: "Extra Large", variant: :primary, size: :xl) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="text-center">
+      <div class="glass-medium rounded-3xl p-8 border border-white/20">
+        <h3 class="text-xl font-semibold text-white mb-4">🎉 Component Framework Active</h3>
+        <p class="text-gray-300 mb-6">
+          Your component library is ready! Create new components in the 
+          <code class="bg-white/10 px-2 py-1 rounded text-sm text-blue-300">app/components/</code> 
+          directory.
+        </p>
+        <div class="flex justify-center gap-4">
+          <a href="https://viewcomponent.org/guide/" target="_blank" 
+             class="glass-light px-6 py-3 rounded-xl text-white hover:bg-white/20 transition-all border border-white/20">
+            📚 ViewComponent Docs
+          </a>
+          <a href="https://tailwindcss.com/docs" target="_blank" 
+             class="glass-light px-6 py-3 rounded-xl text-white hover:bg-white/20 transition-all border border-white/20">
+            🎨 Tailwind Docs
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

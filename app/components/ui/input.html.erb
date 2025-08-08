@@ -1,0 +1,30 @@
+<div class="space-y-2">
+  <% if label %>
+    <label class="<%= label_classes %>">
+      <%= label %>
+    </label>
+  <% end %>
+  
+  <% if type == :textarea %>
+    <textarea 
+      <% if placeholder %>placeholder="<%= placeholder %>"<% end %>
+      <% if rows %>rows="<%= rows %>"<% end %>
+      class="<%= input_classes %>"
+      <%= attrs.except(:class).map { |k, v| "#{k}=\"#{v}\"" }.join(" ").html_safe %>
+    ><%= value %></textarea>
+  <% else %>
+    <input 
+      type="<%= type %>"
+      <% if placeholder %>placeholder="<%= placeholder %>"<% end %>
+      <% if value %>value="<%= value %>"<% end %>
+      class="<%= input_classes %>"
+      <%= attrs.except(:class).map { |k, v| "#{k}=\"#{v}\"" }.join(" ").html_safe %>
+    />
+  <% end %>
+  
+  <% if error %>
+    <p class="<%= error_classes %>">
+      <%= error %>
+    </p>
+  <% end %>
+</div> 

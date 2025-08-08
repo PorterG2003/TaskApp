@@ -1,1 +1,47 @@
 @import "tailwindcss";
+
+/* Glass morphism utilities */
+@layer utilities {
+  .glass-light {
+    @apply backdrop-blur-sm bg-white/30 border border-white/20;
+  }
+  
+  .glass-medium {
+    @apply backdrop-blur-md bg-white/20 border border-white/20;
+  }
+  
+  .glass-heavy {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+  }
+  
+  .glass-tint-blue {
+    @apply bg-blue-500/10;
+  }
+  
+  .glass-tint-purple {
+    @apply bg-purple-500/10;
+  }
+  
+  .glass-tint-green {
+    @apply bg-green-500/10;
+  }
+  
+  .glass-tint-amber {
+    @apply bg-amber-500/10;
+  }
+}
+
+/* Component base styles */
+@layer components {
+  .component-transition {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .component-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2;
+  }
+  
+  .component-shadow {
+    @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+}

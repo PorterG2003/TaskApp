@@ -1,0 +1,13 @@
+<div class="<%= avatar_classes %>">
+  <% if has_image? %>
+    <img 
+      src="<%= src %>" 
+      alt="<%= alt %>" 
+      class="w-full h-full rounded-full object-cover"
+    />
+  <% else %>
+    <div class="<%= fallback_classes %>">
+      <%= fallback || "?" %>
+    </div>
+  <% end %>
+</div> 
