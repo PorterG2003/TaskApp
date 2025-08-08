@@ -1,23 +1,21 @@
 <div class="px-6 py-3 bg-white/40 hover:bg-white/50 transition duration-150 backdrop-blur-xl" data-controller="task">
-  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-    <!-- Left side: Checkbox, Title, and Badges -->
-    <div class="flex items-center min-w-0 flex-1">
-      <!-- Completion Checkbox -->
-      <%= form_with model: task, local: false, data: { action: "submit->task#toggle", turbo_method: :patch } do |form| %>
-        <%= form.hidden_field :completed, value: !task.completed? %>
-        <button type="submit" class="mr-4 flex items-center">
-          <% if task.completed? %>
-            <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-              <i class="fas fa-check text-gray-900"></i>
-            </div>
-          <% else %>
-            <div class="w-6 h-6 border-2 border-gray-300 rounded-full hover:border-green-400 transition duration-150"></div>
-          <% end %>
-        </button>
-      <% end %>
+  <div class="flex items-start gap-1 sm:gap-4">
+    <!-- Left side: Checkbox -->
+    <%= form_with model: task, local: false, data: { action: "submit->task#toggle", turbo_method: :patch } do |form| %>
+      <%= form.hidden_field :completed, value: !task.completed? %>
+      <button type="submit" class="mr-4 flex items-center mt-1">
+        <% if task.completed? %>
+          <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+            <i class="fas fa-check text-gray-900"></i>
+          </div>
+        <% else %>
+          <div class="w-6 h-6 border-2 border-gray-300 rounded-full hover:border-green-400 transition duration-150"></div>
+        <% end %>
+      </button>
+    <% end %>
 
-      <!-- Task Title and Badges -->
-      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 min-w-0 flex-1">
+    <!-- Task Title and Badges -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 min-w-0 flex-1">
         <h4 class="<%= 'line-through text-gray-500' if task.completed? %> text-lg font-medium text-gray-900 truncate">
           <%= task.title %>
         </h4>
@@ -43,8 +41,8 @@
     </div>
 
     <!-- Actions Dropdown -->
-    <div class="relative flex-shrink-0 self-center" data-controller="dropdown">
-      <button class="text-gray-500 hover:text-gray-700 p-2 transition duration-200"
+    <div class="relative flex-shrink-0" data-controller="dropdown">
+      <button class="text-gray-500 hover:text-gray-700 p-2 transition duration-200 -mt-1"
               data-action="dropdown#toggle">
         <i class="fas fa-ellipsis-h"></i>
       </button>
