@@ -1,5 +1,5 @@
-<div class="px-6 py-4 bg-white/40 hover:bg-white/50 transition duration-150 backdrop-blur-xl" data-controller="task">
-  <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+<div class="px-6 py-3 bg-white/40 hover:bg-white/50 transition duration-150 backdrop-blur-xl" data-controller="task">
+  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
     <!-- Left side: Checkbox, Title, and Badges -->
     <div class="flex items-center min-w-0 flex-1">
       <!-- Completion Checkbox -->
@@ -17,7 +17,7 @@
       <% end %>
 
       <!-- Task Title and Badges -->
-      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 min-w-0 flex-1">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 min-w-0 flex-1">
         <h4 class="<%= 'line-through text-gray-500' if task.completed? %> text-lg font-medium text-gray-900 truncate">
           <%= task.title %>
         </h4>
@@ -72,7 +72,7 @@
   </div>
 
   <!-- Task Details -->
-  <div class="mt-2 ml-10 sm:ml-10">
+  <div class="mt-1 ml-10 sm:ml-10">
     <% if task.description.present? %>
       <p class="<%= 'text-gray-400' if task.completed? %> text-gray-600 break-words line-clamp-2"><%= task.description %></p>
     <% end %>
