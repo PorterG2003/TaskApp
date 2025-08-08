@@ -9,14 +9,14 @@
       <!-- Task Status Button - Keep it from shrinking -->
       <div class="flex-shrink-0">
         <% if existing_task %>
-          <div class="glass-heavy bg-green-500/80 text-white px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-xl border border-white/30 flex items-center whitespace-nowrap">
+          <div class="glass-heavy bg-green-500/80 text-gray-900 px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-xl border border-white/30 flex items-center whitespace-nowrap">
             <i class="fas fa-check text-sm mr-2"></i>
             <span>Task Created</span>
           </div>
         <% else %>
           <%= button_to calendar_generate_task_path(calendar_id: calendar_id, event_id: event.id),
               method: :post,
-              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white px-4 py-2 rounded-xl text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center whitespace-nowrap",
+              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-gray-900 px-4 py-2 rounded-xl text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center whitespace-nowrap",
               form: { data: { turbo: true } } do %>
             <i class="fas fa-plus text-sm mr-2"></i>
             <span>Generate Task</span>

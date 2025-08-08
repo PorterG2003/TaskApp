@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   post "calendar/generate_task", to: "calendar#generate_task"
   
   # Component preview (development only)
-  get "components", to: "components#index" if Rails.env.development?
+  if Rails.env.development?
+    get "components", to: "components#index"
+    get "components/:component", to: "components#show"
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

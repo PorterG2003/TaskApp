@@ -83,9 +83,6 @@ export default class extends Controller {
         <a href="/calendar" class="text-gray-700 p-3 rounded-xl flex items-center justify-center transition duration-200 hover:bg-white/20" title="Calendar">
           <i class="fas fa-calendar-week text-lg"></i>
         </a>
-        <a href="/components" class="text-gray-700 p-3 rounded-xl flex items-center justify-center transition duration-200 hover:bg-white/20" title="Components">
-          <i class="fas fa-cube text-lg"></i>
-        </a>
       </nav>
     `
 
@@ -125,10 +122,6 @@ export default class extends Controller {
         <a href="/calendar" class="text-gray-700 px-4 py-3 rounded-xl flex items-center transition duration-200 hover:bg-white/20">
           <i class="fas fa-calendar-week text-lg mr-3"></i>
           <span class="font-medium">Calendar</span>
-        </a>
-        <a href="/components" class="text-gray-700 px-4 py-3 rounded-xl flex items-center transition duration-200 hover:bg-white/20">
-          <i class="fas fa-cube text-lg mr-3"></i>
-          <span class="font-medium">Components</span>
         </a>
       </nav>
     `

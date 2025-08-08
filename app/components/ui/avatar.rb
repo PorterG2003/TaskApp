@@ -39,7 +39,7 @@ class Ui::Avatar < ApplicationComponent
   end
 
   def fallback_classes
-    base_classes = "flex items-center justify-center w-full h-full rounded-full font-medium text-white"
+    base_classes = "flex items-center justify-center w-full h-full rounded-full font-medium text-gray-900"
     
     # Size-based text classes
     text_styles = case size

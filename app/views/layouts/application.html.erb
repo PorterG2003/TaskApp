@@ -55,7 +55,7 @@
             <div class="p-6 border-b border-white/20 flex items-center justify-between" data-sidebar-target="brandSection">
               <%= link_to tasks_path, class: "flex items-center" do %>
                 <div class="w-10 h-10 glass-heavy bg-blue-600/80 backdrop-blur-xl rounded-xl flex items-center justify-center mr-3 border border-white/30">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
                   </svg>
                 </div>
@@ -106,7 +106,7 @@
                     <p class="text-xs text-gray-500"><%= current_user.email %></p>
                   </div>
                 </div>
-                <%= button_to logout_path, method: :delete, class: "w-full glass-heavy bg-red-500/80 hover:bg-red-600/80 text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center justify-center" do %>
+                <%= button_to logout_path, method: :delete, class: "w-full glass-heavy bg-red-500/80 hover:bg-red-600/80 text-gray-900 px-3 py-2 rounded-lg text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center justify-center" do %>
                   <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                   </svg>
