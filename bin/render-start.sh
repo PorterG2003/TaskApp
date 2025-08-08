@@ -20,12 +20,24 @@ echo "PostgreSQL is available"
 # Set up database
 echo "Setting up database..."
 echo "Running database migrations..."
-bundle exec rails db:migrate
-echo "Database migration completed"
+
+# Try to run migrations with better error handling
+if bundle exec rails db:migrate; then
+  echo "Database migration completed successfully"
+else
+  echo "Migration failed, trying to create database first..."
+  bundle exec rails db:create
+  bundle exec rails db:migrate
+  echo "Database migration completed after create"
+fi
 
 # Check if tables exist
 echo "Checking if users table exists..."
-bundle exec rails runner "puts 'Users table exists: ' + ActiveRecord::Base.connection.table_exists?('users').to_s"
+if bundle exec rails runner "puts 'Users table exists: ' + ActiveRecord::Base.connection.table_exists?('users').to_s"; then
+  echo "Database setup verification completed"
+else
+  echo "Warning: Could not verify database tables"
+fi
 
 # Start the application
 bundle exec puma -C config/puma.rb

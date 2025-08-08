@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :tasks, except: [:new]
   get "offline", to: "pages#offline"
+  get "migrate", to: "pages#migrate"
 
   # Calendar
   get "calendar", to: "calendar#index"
