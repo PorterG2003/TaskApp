@@ -20,37 +20,41 @@
     <!-- Task Content -->
     <div class="flex-1">
       <div class="flex items-center space-x-3">
-        <h4 class="<%= 'line-through text-gray-500' if task.completed? %> text-lg font-medium text-gray-900">
-          <%= task.title %>
-        </h4>
+                  <div class="min-w-0 flex-1">
+            <h4 class="<%= 'line-through text-gray-500' if task.completed? %> text-lg font-medium text-gray-900 truncate">
+              <%= task.title %>
+            </h4>
+          </div>
+          
+          <div class="flex-shrink-0 flex items-center gap-2 ml-3">
+            <!-- Priority Badge -->
+            <%= render Ui::Badge.new(
+              text: task.priority_label,
+              variant: task.priority_color_variant,
+              size: :sm
+            ) %>
+            
+            <!-- Overdue Badge -->
+            <% if task.overdue? %>
+              <%= render Ui::Badge.new(
+                text: "Overdue",
+                variant: :danger,
+                size: :sm
+              ) %>
+            <% end %>
+          </div>
+        </div>
         
-        <!-- Priority Badge -->
-        <%= render Ui::Badge.new(
-          text: task.priority_label,
-          variant: task.priority_color_variant,
-          size: :sm
-        ) %>
-        
-        <!-- Overdue Badge -->
-        <% if task.overdue? %>
-          <%= render Ui::Badge.new(
-            text: "Overdue",
-            variant: :danger,
-            size: :sm
-          ) %>
+        <% if task.description.present? %>
+          <p class="<%= 'text-gray-400' if task.completed? %> text-gray-600 mt-1 break-words line-clamp-2"><%= task.description %></p>
         <% end %>
-      </div>
-      
-      <% if task.description.present? %>
-        <p class="<%= 'text-gray-400' if task.completed? %> text-gray-600 mt-1"><%= task.description %></p>
-      <% end %>
       
       <% if task.due_date.present? %>
         <p class="text-sm text-gray-500 mt-2 flex items-center">
-          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
           </svg>
-          Due: <%= task.due_date.strftime("%B %d, %Y") %>
+          <span class="truncate">Due: <%= task.due_date.strftime("%B %d, %Y") %></span>
         </p>
       <% end %>
     </div>

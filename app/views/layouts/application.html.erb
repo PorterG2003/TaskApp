@@ -40,9 +40,16 @@
       <!-- Sidebar Navigation for authenticated users -->
       <div class="flex h-screen" data-controller="sidebar">
         <!-- Sidebar -->
-        <div class="glass-heavy bg-white/20 backdrop-blur-xl border-r border-white/30 flex-shrink-0 transition-all duration-300 ease-in-out" 
-             data-sidebar-target="sidebar"
-             data-action="transitionend->sidebar#onTransitionEnd">
+                  <!-- Backdrop -->
+          <div class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
+               data-sidebar-target="backdrop"
+               data-action="click->sidebar#close">
+          </div>
+
+          <!-- Sidebar -->
+          <div class="fixed inset-y-0 left-0 z-40 glass-heavy bg-white/20 backdrop-blur-xl border-r border-white/30 flex-shrink-0 transition-all duration-300 ease-in-out transform lg:translate-x-0 lg:static lg:z-auto" 
+               data-sidebar-target="sidebar"
+               data-action="transitionend->sidebar#onTransitionEnd">
           <div class="flex flex-col h-full">
             <!-- Logo/Brand -->
             <div class="p-6 border-b border-white/20 flex items-center justify-between" data-sidebar-target="brandSection">
@@ -111,13 +118,30 @@
         </div>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-          <main class="flex-1 overflow-y-auto p-8">
-            <div class="glass-heavy rounded-3xl p-8 backdrop-blur-xl bg-white/30 border border-white/40 shadow-2xl">
-              <%= yield %>
-            </div>
-          </main>
-        </div>
+                     <!-- Mobile Header -->
+             <div class="fixed top-0 left-0 right-0 lg:hidden z-40" data-sidebar-target="mobileHeader">
+               <div class="glass-heavy bg-white/20 backdrop-blur-xl border-b border-white/30 px-4 py-3 flex items-center">
+                 <!-- Menu Button -->
+                 <button class="glass-heavy bg-white/30 hover:bg-white/50 text-gray-700 w-12 h-12 rounded-xl transition duration-200 backdrop-blur-xl border border-white/30 flex items-center justify-center"
+                         data-action="click->sidebar#toggle">
+                   <i class="fas fa-bars text-xl"></i>
+                 </button>
+                 
+                 <!-- Title -->
+                 <div class="ml-4">
+                   <h1 class="text-xl font-bold text-gray-900">TaskApp</h1>
+                 </div>
+               </div>
+             </div>
+
+             <!-- Main Content -->
+             <div class="flex-1 flex flex-col overflow-hidden lg:pl-0">
+               <main class="flex-1 overflow-y-auto p-4 lg:p-8 mt-20 lg:mt-0">
+                 <div class="glass-heavy rounded-3xl p-4 lg:p-8 backdrop-blur-xl bg-white/30 border border-white/40 shadow-2xl">
+                   <%= yield %>
+                 </div>
+               </main>
+             </div>
       </div>
     <% else %>
       <%= yield %>
