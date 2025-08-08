@@ -13,9 +13,17 @@ class PagesController < ApplicationController
     if Rails.env.production? && params[:key] == ENV['MIGRATION_SECRET_KEY']
       begin
         Rails.logger.info "Starting migration..."
-        Rake::Task["deploy:migrate"].invoke
-        Rails.logger.info "Migration completed successfully"
-        render json: { status: "success", message: "Database migration completed" }
+        
+        # Use Rails runner to execute the migration
+        result = system("bundle exec rails db:migrate")
+        
+        if result
+          Rails.logger.info "Migration completed successfully"
+          render json: { status: "success", message: "Database migration completed" }
+        else
+          Rails.logger.error "Migration command failed"
+          render json: { status: "error", message: "Migration command failed" }, status: 500
+        end
       rescue => e
         Rails.logger.error "Migration failed: #{e.message}"
         Rails.logger.error e.backtrace.join("\n")
