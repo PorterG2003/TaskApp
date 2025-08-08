@@ -1,3 +1,9 @@
+databases:
+  - name: taskapp_postgres
+    plan: free
+    postgresMajorVersion: 15
+    ipAllowList: []  # optional if you want to specify allowed IPs
+
 services:
   - type: web
     name: taskapp
@@ -6,8 +12,6 @@ services:
     startCommand: "bundle exec puma -C config/puma.rb"
     env: production
     region: oregon
-    dependsOn:
-      - taskapp_postgres
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -27,8 +31,9 @@ services:
         value: true
     healthCheckPath: /up
     autoDeploy: true
-
-databases:
-  - name: taskapp_postgres
-    plan: free
-    postgresMajorVersion: 15
+    domains:
+      - taskapp
+    disk:
+      name: task-storage
+      mountPath: /storage
+      sizeGB: 1
