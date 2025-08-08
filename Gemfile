@@ -36,6 +36,9 @@ gem "dotenv-rails"
 # UI Components
 gem "view_component"
 
+# Font Awesome Icons
+gem "font-awesome-sass"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
