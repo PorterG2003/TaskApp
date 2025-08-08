@@ -1,11 +1,7 @@
-<div class="space-y-6">
-  <!-- Flash Messages -->
-  <div id="flash">
-    <%= render "shared/flash" %>
-  </div>
-
-  <div class="flex items-center justify-between">
-    <h1 class="text-2xl font-bold text-gray-900">Calendar</h1>
+<div>
+  <!-- Header Section -->
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">Calendar</h1>
     <% if @week_start && @week_end %>
       <div class="flex items-center space-x-2">
         <%= link_to calendar_path(date: (@week_start - 7.days).to_s), class: "text-gray-700 px-3 py-2 rounded-lg hover:bg-white/20" do %>
@@ -20,7 +16,7 @@
   </div>
 
   <% if @events.any? %>
-    <ul class="divide-y divide-white/20">
+    <ul class="divide-y divide-white/10">
       <% @events.each do |event| %>
         <% start_at = (event.start.date_time || event.start.date).to_time rescue nil %>
         <% end_at = (event.end.date_time || event.end.date).to_time rescue nil %>

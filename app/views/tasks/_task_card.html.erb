@@ -1,9 +1,10 @@
-<div class="px-6 py-3 bg-white/40 hover:bg-white/50 transition duration-150 backdrop-blur-xl" data-controller="task">
-  <div class="flex items-start gap-1 sm:gap-4">
-    <!-- Left side: Checkbox -->
+<div class="px-6 py-3 bg-white/30 hover:bg-white/40 transition duration-150" data-controller="task">
+  <!-- Task Header -->
+  <div class="flex items-start gap-4">
+    <!-- Completion Checkbox -->
     <%= form_with model: task, local: false, data: { action: "submit->task#toggle", turbo_method: :patch } do |form| %>
       <%= form.hidden_field :completed, value: !task.completed? %>
-      <button type="submit" class="mr-4 flex items-center mt-1">
+      <button type="submit" class="flex-shrink-0">
         <% if task.completed? %>
           <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
             <i class="fas fa-check text-gray-900"></i>
@@ -14,35 +15,50 @@
       </button>
     <% end %>
 
-    <!-- Task Title and Badges -->
-    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 min-w-0 flex-1">
+    <!-- Task Content -->
+    <div class="min-w-0 flex-1">
+      <!-- Title and Badges -->
+      <div class="flex flex-wrap items-center gap-2">
         <h4 class="<%= 'line-through text-gray-500' if task.completed? %> text-lg font-medium text-gray-900 truncate">
           <%= task.title %>
         </h4>
         
-        <div class="flex items-center gap-2 flex-shrink-0">
-          <!-- Priority Badge -->
+        <!-- Priority Badge -->
+        <%= render Ui::Badge.new(
+          text: task.priority_label,
+          variant: task.priority_color_variant,
+          size: :sm
+        ) %>
+        
+        <!-- Overdue Badge -->
+        <% if task.overdue? %>
           <%= render Ui::Badge.new(
-            text: task.priority_label,
-            variant: task.priority_color_variant,
+            text: "Overdue",
+            variant: :danger,
             size: :sm
           ) %>
-          
-          <!-- Overdue Badge -->
-          <% if task.overdue? %>
-            <%= render Ui::Badge.new(
-              text: "Overdue",
-              variant: :danger,
-              size: :sm
-            ) %>
-          <% end %>
-        </div>
+        <% end %>
       </div>
+
+          <!-- Task Details -->
+    <% if task.description.present? && !task.calendar_event_id.present? %>
+      <p class="<%= 'text-gray-400' if task.completed? %> text-gray-600 mt-1 break-words line-clamp-2">
+        <%= task.description %>
+      </p>
+    <% end %>
+
+    <!-- Due Date (only show for non-calendar tasks) -->
+    <% if task.due_date.present? && !task.calendar_event_id.present? %>
+      <p class="text-sm text-gray-500 mt-2 flex items-center">
+        <i class="fas fa-calendar text-gray-500 mr-1 flex-shrink-0"></i>
+        <span class="truncate">Due: <%= task.due_date.strftime("%B %d, %Y") %></span>
+      </p>
+    <% end %>
     </div>
 
     <!-- Actions Dropdown -->
     <div class="relative flex-shrink-0" data-controller="dropdown">
-      <button class="text-gray-500 hover:text-gray-700 p-2 transition duration-200 -mt-1"
+      <button class="text-gray-500 hover:text-gray-700 p-2 transition duration-200"
               data-action="dropdown#toggle">
         <i class="fas fa-ellipsis-h"></i>
       </button>
@@ -70,7 +86,7 @@
   </div>
 
   <!-- Task Details -->
-  <div class="mt-1 ml-10 sm:ml-10">
+  <div class="mt-2 ml-10">
     <% if task.description.present? %>
       <p class="<%= 'text-gray-400' if task.completed? %> text-gray-600 break-words line-clamp-2"><%= task.description %></p>
     <% end %>

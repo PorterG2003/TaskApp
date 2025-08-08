@@ -1,8 +1,8 @@
 <div class="group" data-controller="modal">
   <!-- Calendar Event Card -->
-  <div class="px-6 py-3 bg-white/40 hover:bg-white/50 transition duration-150 backdrop-blur-xl rounded-xl border border-white/40 shadow-lg cursor-pointer"
+  <div class="px-4 py-2 bg-white/40 hover:bg-white/50 transition duration-150 backdrop-blur-xl rounded-lg border border-white/40 shadow-lg cursor-pointer"
        data-action="click->modal#open">
-    <div class="flex items-start gap-4">
+    <div class="flex items-start gap-2">
       <!-- Event Title and Badges -->
       <div class="flex-1 min-w-0">
         <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Event Time -->
-        <p class="text-sm text-gray-500 mt-1 flex items-center">
+        <p class="text-sm text-gray-500 mt-0.5 flex items-center">
           <i class="fas fa-clock text-gray-500 mr-1 flex-shrink-0"></i>
           <span class="truncate">
             <%= event.start_time.strftime("%I:%M %p") %> - <%= event.end_time.strftime("%I:%M %p") %>
@@ -32,7 +32,7 @@
 
         <!-- Event Location -->
         <% if event.location.present? %>
-          <p class="text-sm text-gray-500 mt-1 flex items-center">
+          <p class="text-sm text-gray-500 mt-0.5 flex items-center">
             <i class="fas fa-map-marker-alt text-gray-500 mr-1 flex-shrink-0"></i>
             <span class="truncate"><%= event.location %></span>
           </p>
@@ -43,7 +43,7 @@
       <div class="flex-shrink-0">
         <% unless event.task_created? %>
           <%= button_to calendar_event_tasks_path(event.id),
-              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center" do %>
+              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center" do %>
             <i class="fas fa-plus mr-2"></i>
             Generate Tasks
           <% end %>

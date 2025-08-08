@@ -9,7 +9,7 @@ services:
     name: taskapp
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    startCommand: "./bin/render-start.sh"
     env: production
     region: oregon
     waitForServices:
