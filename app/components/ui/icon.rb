@@ -25,7 +25,7 @@ class Ui::Icon < ApplicationComponent
     when :md then "text-base"
     when :lg then "text-lg"
     when :xl then "text-xl"
-    when :2xl then "text-2xl"
+    when :"2xl" then "text-2xl"
     else "text-base"
     end
   end
