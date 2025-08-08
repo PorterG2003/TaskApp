@@ -9,7 +9,7 @@
   <!-- Task Statistics -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
     <!-- Total Tasks -->
-    <div class="glass-heavy bg-white/20 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
+    <div class="glass-heavy bg-white/40 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
       <div class="flex items-center">
         <div class="glass-heavy bg-blue-500/80 p-3 rounded-xl backdrop-blur-xl border border-white/30 mr-4">
           <i class="fas fa-tasks text-gray-900 text-xl"></i>
@@ -22,7 +22,7 @@
     </div>
     
     <!-- Pending Tasks -->
-    <div class="glass-heavy bg-white/20 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
+    <div class="glass-heavy bg-white/40 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
       <div class="flex items-center">
         <div class="glass-heavy bg-yellow-500/80 p-3 rounded-xl backdrop-blur-xl border border-white/30 mr-4">
           <i class="fas fa-clock text-gray-900 text-xl"></i>
@@ -35,7 +35,7 @@
     </div>
     
     <!-- Completed Tasks -->
-    <div class="glass-heavy bg-white/20 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
+    <div class="glass-heavy bg-white/40 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
       <div class="flex items-center">
         <div class="glass-heavy bg-green-500/80 p-3 rounded-xl backdrop-blur-xl border border-white/30 mr-4">
           <i class="fas fa-check-circle text-gray-900 text-xl"></i>
@@ -53,8 +53,8 @@
     <% if @tasks.any? %>
       <!-- Pending Tasks Section -->
       <% if @pending_tasks.any? %>
-        <div class="glass-heavy bg-white/20 rounded-2xl shadow-2xl border border-white/40 overflow-hidden backdrop-blur-xl">
-          <div class="glass-medium bg-white/30 px-6 py-4 border-b border-white/30">
+        <div class="glass-heavy bg-white/40 rounded-2xl shadow-2xl border border-white/40 overflow-hidden backdrop-blur-xl">
+          <div class="glass-heavy bg-white/50 px-6 py-4 border-b border-white/30">
             <h3 class="text-xl font-semibold text-gray-900">Pending Tasks</h3>
           </div>
           <div class="divide-y divide-white/10">
@@ -67,8 +67,8 @@
 
       <!-- Completed Tasks Section -->
       <% if @completed_tasks.any? %>
-        <div class="glass-heavy bg-white/20 rounded-2xl shadow-2xl border border-white/40 overflow-hidden backdrop-blur-xl">
-          <div class="glass-medium bg-white/30 px-6 py-4 border-b border-white/30">
+        <div class="glass-heavy bg-white/40 rounded-2xl shadow-2xl border border-white/40 overflow-hidden backdrop-blur-xl">
+          <div class="glass-heavy bg-white/50 px-6 py-4 border-b border-white/30">
             <h3 class="text-xl font-semibold text-gray-900">Completed Tasks</h3>
           </div>
           <div class="divide-y divide-white/10">
@@ -81,7 +81,7 @@
     <% else %>
       <!-- Empty State -->
       <div class="text-center py-16">
-        <div class="glass-heavy bg-white/20 rounded-3xl p-12 backdrop-blur-xl border border-white/40 shadow-2xl max-w-md mx-auto">
+        <div class="glass-heavy bg-white/40 rounded-3xl p-12 backdrop-blur-xl border border-white/40 shadow-2xl max-w-md mx-auto">
           <div class="glass-heavy bg-gray-100/50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-xl border border-white/30">
             <i class="fas fa-tasks text-gray-400 text-4xl"></i>
           </div>
