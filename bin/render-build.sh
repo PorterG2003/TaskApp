@@ -15,11 +15,9 @@ mkdir -p storage
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
 
-# Wait for PostgreSQL
+# Wait for PostgreSQL using pg_isready
 echo "Waiting for PostgreSQL to become available..."
-while ! nc -z $POSTGRES_HOST 5432; do
-  sleep 0.1
-done
+timeout 30s bash -c "until pg_isready -h $POSTGRES_HOST -p 5432; do sleep 1; done"
 echo "PostgreSQL is available"
 
 # Set up database
