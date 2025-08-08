@@ -26,7 +26,7 @@ fi
 db_host=$(echo $DATABASE_URL | sed -n 's/.*@\([^:]*\).*/\1/p')
 db_port=$(echo $DATABASE_URL | sed -n 's/.*:\([0-9]*\)\/.*/\1/p')
 
-echo "Checking PostgreSQL connection at $db_host:${db_port:-5432}..."
+echo "Checking PostgreSQL connection at host $db_host port ${db_port:-5432}..."
 timeout 30s bash -c "until pg_isready -h $db_host -p ${db_port:-5432}; do sleep 1; done"
 echo "PostgreSQL is available"
 
