@@ -17,8 +17,19 @@ bundle exec rails assets:clean
 
 # Wait for PostgreSQL using pg_isready
 echo "Waiting for PostgreSQL to become available..."
+
+# Check for DATABASE_URL
+max_attempts=30
+attempt=1
+while [ -z "${DATABASE_URL}" ] && [ $attempt -le $max_attempts ]; do
+  echo "Attempt $attempt/$max_attempts: Waiting for DATABASE_URL to be set..."
+  sleep 2
+  attempt=$((attempt + 1))
+done
+
 if [ -z "${DATABASE_URL}" ]; then
-  echo "Error: DATABASE_URL is not set"
+  echo "Error: DATABASE_URL is not set after $max_attempts attempts"
+  echo "Please ensure the database is properly provisioned in Render"
   exit 1
 fi
 

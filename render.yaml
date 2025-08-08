@@ -4,6 +4,10 @@ services:
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
+    env: production
+    region: oregon
+    dependsOn:
+      - taskapp_postgres
     envVars:
       - key: DATABASE_URL
         fromDatabase:
