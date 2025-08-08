@@ -1,30 +1,67 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["sidebar", "brandSection", "navSection", "userSection", "toggleIcon"]
+  static targets = ["sidebar", "brandSection", "navSection", "userSection", "backdrop", "mobileHeader"]
 
   connect() {
-    // Initialize sidebar state from localStorage or default to expanded
-    this.isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true'
+    // Initialize sidebar state
+    this.isOpen = window.innerWidth >= 1024 // Open by default on desktop
     this.updateSidebar()
+
+    // Handle resize events
+    this.resizeObserver = new ResizeObserver(entries => {
+      const isDesktop = window.innerWidth >= 1024
+      if (isDesktop && !this.isOpen) {
+        this.open()
+      } else if (!isDesktop && this.isOpen) {
+        this.close()
+      }
+    })
+    this.resizeObserver.observe(document.body)
+  }
+
+  disconnect() {
+    this.resizeObserver.disconnect()
   }
 
   toggle() {
-    this.isCollapsed = !this.isCollapsed
-    localStorage.setItem('sidebarCollapsed', this.isCollapsed)
+    if (this.isOpen) {
+      this.close()
+    } else {
+      this.open()
+    }
+  }
+
+  open() {
+    this.isOpen = true
+    this.updateSidebar()
+  }
+
+  close() {
+    this.isOpen = false
     this.updateSidebar()
   }
 
   updateSidebar() {
-    if (this.isCollapsed) {
-      this.collapseSidebar()
-    } else {
+    if (this.isOpen) {
       this.expandSidebar()
+    } else {
+      this.collapseSidebar()
+    }
+
+    // Handle backdrop and mobile header
+    if (this.hasBackdropTarget) {
+      this.backdropTarget.classList.toggle('opacity-0', !this.isOpen)
+      this.backdropTarget.classList.toggle('pointer-events-none', !this.isOpen)
+    }
+    if (this.hasMobileHeaderTarget) {
+      this.mobileHeaderTarget.classList.toggle('hidden', this.isOpen)
     }
   }
 
   collapseSidebar() {
-    this.sidebarTarget.style.width = '4rem'
+    this.sidebarTarget.classList.add('-translate-x-full')
+    this.sidebarTarget.style.width = '16rem' // Keep full width but translate off-screen
 
     // Make the brand container match nav icon spacing/position
     this.brandSectionTarget.className = "px-2 py-2 border-b border-white/20 flex items-center justify-center"
@@ -57,6 +94,7 @@ export default class extends Controller {
   }
 
   expandSidebar() {
+    this.sidebarTarget.classList.remove('-translate-x-full')
     this.sidebarTarget.style.width = '16rem'
 
     // Restore brand container default classes

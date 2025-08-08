@@ -1,56 +1,60 @@
 <li class="py-4">
   <div class="glass-heavy bg-white/20 rounded-xl p-4 backdrop-blur-xl border border-white/40 shadow-lg">
-    <div class="flex items-start justify-between">
-      <div class="flex-1">
-        <h3 class="text-lg font-semibold text-gray-900"><%= event.summary.presence || 'Untitled Event' %></h3>
-        
-        <div class="mt-2 space-y-2">
-          <!-- Time -->
-          <div class="flex items-center text-sm text-gray-600">
-            <i class="fas fa-clock mr-2"></i>
-            <% start_at = (event.start.date_time || event.start.date).to_time rescue nil %>
-            <% end_at = (event.end.date_time || event.end.date).to_time rescue nil %>
-            <% if start_at && end_at %>
-              <%= start_at.in_time_zone.strftime('%l:%M %p') %> - <%= end_at.in_time_zone.strftime('%l:%M %p') %>
-            <% else %>
-              All day
-            <% end %>
-          </div>
-          
-          <!-- Location if present -->
-          <% if event.location.present? %>
-            <div class="flex items-center text-sm text-gray-600">
-              <i class="fas fa-location-dot mr-2"></i>
-              <%= event.location %>
-            </div>
-          <% end %>
-          
-          <!-- Description if present -->
-          <% if event.description.present? %>
-            <div class="text-sm text-gray-600 mt-2">
-              <%= event.description %>
-            </div>
-          <% end %>
-        </div>
+    <!-- Title and Task Status -->
+    <div class="flex items-start justify-between gap-4">
+      <div class="min-w-0 flex-1"> <!-- min-w-0 is crucial for text truncation -->
+        <h3 class="text-lg font-semibold text-gray-900 break-words line-clamp-2"><%= event.summary.presence || 'Untitled Event' %></h3>
       </div>
       
-      <!-- Task Status or Generate Button -->
-      <div>
+      <!-- Task Status Button - Keep it from shrinking -->
+      <div class="flex-shrink-0">
         <% if existing_task %>
-          <div class="glass-heavy bg-green-500/80 text-white px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-xl border border-white/30 flex items-center">
+          <div class="glass-heavy bg-green-500/80 text-white px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-xl border border-white/30 flex items-center whitespace-nowrap">
             <i class="fas fa-check text-sm mr-2"></i>
             <span>Task Created</span>
           </div>
         <% else %>
           <%= button_to calendar_generate_task_path(calendar_id: calendar_id, event_id: event.id),
               method: :post,
-              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white px-4 py-2 rounded-xl text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center",
+              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white px-4 py-2 rounded-xl text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center whitespace-nowrap",
               form: { data: { turbo: true } } do %>
             <i class="fas fa-plus text-sm mr-2"></i>
             <span>Generate Task</span>
           <% end %>
         <% end %>
       </div>
+    </div>
+
+    <!-- Event Details -->
+    <div class="mt-3 space-y-2">
+      <!-- Time -->
+      <div class="flex items-center text-sm text-gray-600">
+        <i class="fas fa-clock mr-2 flex-shrink-0"></i>
+        <span class="truncate">
+          <% start_at = (event.start.date_time || event.start.date).to_time rescue nil %>
+          <% end_at = (event.end.date_time || event.end.date).to_time rescue nil %>
+          <% if start_at && end_at %>
+            <%= start_at.in_time_zone.strftime('%l:%M %p') %> - <%= end_at.in_time_zone.strftime('%l:%M %p') %>
+          <% else %>
+            All day
+          <% end %>
+        </span>
+      </div>
+      
+      <!-- Location if present -->
+      <% if event.location.present? %>
+        <div class="flex items-center text-sm text-gray-600">
+          <i class="fas fa-location-dot mr-2 flex-shrink-0"></i>
+          <span class="truncate"><%= event.location %></span>
+        </div>
+      <% end %>
+      
+      <!-- Description if present -->
+      <% if event.description.present? %>
+        <div class="text-sm text-gray-600 mt-2">
+          <p class="break-words line-clamp-2"><%= event.description %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 </li>

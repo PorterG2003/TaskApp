@@ -19,22 +19,20 @@
     <% end %>
   </div>
 
-  <div class="glass-heavy bg-white/20 rounded-2xl p-6 backdrop-blur-xl border border-white/40 shadow-2xl">
-    <% if @events.any? %>
-      <ul class="divide-y divide-white/20">
-        <% @events.each do |event| %>
-          <% start_at = (event.start.date_time || event.start.date).to_time rescue nil %>
-          <% end_at = (event.end.date_time || event.end.date).to_time rescue nil %>
-          <%= turbo_frame_tag "calendar_event_#{event.id}" do %>
-            <%= render "events/event_card",
-                event: event,
-                calendar_id: "primary",
-                existing_task: current_user.tasks.find_by(calendar_event_id: event.id) %>
-          <% end %>
+  <% if @events.any? %>
+    <ul class="divide-y divide-white/20">
+      <% @events.each do |event| %>
+        <% start_at = (event.start.date_time || event.start.date).to_time rescue nil %>
+        <% end_at = (event.end.date_time || event.end.date).to_time rescue nil %>
+        <%= turbo_frame_tag "calendar_event_#{event.id}" do %>
+          <%= render "events/event_card",
+              event: event,
+              calendar_id: "primary",
+              existing_task: current_user.tasks.find_by(calendar_event_id: event.id) %>
         <% end %>
-      </ul>
-    <% else %>
-      <div class="text-center py-12 text-gray-700">No events for this week.</div>
-    <% end %>
-  </div>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="text-center py-12 text-gray-700">No events for this week.</div>
+  <% end %>
 </div>
