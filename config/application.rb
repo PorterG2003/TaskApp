@@ -41,5 +41,8 @@ module TaskApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    # Disable Solid Cache for this simple app
+    config.solid_cache.enabled = false
   end
 end

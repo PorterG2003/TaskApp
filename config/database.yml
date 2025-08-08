@@ -23,3 +23,7 @@ production:
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   host: <%= ENV['POSTGRES_HOST'] %>
   port: 5432
+  
+  cache:
+    <<: *default
+    database: taskapp_production_cache
