@@ -1,0 +1,108 @@
+<div class="group" data-controller="modal">
+  <!-- Calendar Event Card -->
+  <div class="px-6 py-3 bg-white/40 hover:bg-white/50 transition duration-150 backdrop-blur-xl rounded-xl border border-white/40 shadow-lg cursor-pointer"
+       data-action="click->modal#open">
+    <div class="flex items-start gap-4">
+      <!-- Event Title and Badges -->
+      <div class="flex-1 min-w-0">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+          <h4 class="text-lg font-medium text-gray-900 truncate">
+            <%= event.summary %>
+          </h4>
+          
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <!-- Task Status -->
+            <% if event.task_created? %>
+              <%= render Ui::Badge.new(
+                text: "Task Created",
+                variant: :success,
+                size: :sm
+              ) %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Event Time -->
+        <p class="text-sm text-gray-500 mt-1 flex items-center">
+          <i class="fas fa-clock text-gray-500 mr-1 flex-shrink-0"></i>
+          <span class="truncate">
+            <%= event.start_time.strftime("%I:%M %p") %> - <%= event.end_time.strftime("%I:%M %p") %>
+          </span>
+        </p>
+
+        <!-- Event Location -->
+        <% if event.location.present? %>
+          <p class="text-sm text-gray-500 mt-1 flex items-center">
+            <i class="fas fa-map-marker-alt text-gray-500 mr-1 flex-shrink-0"></i>
+            <span class="truncate"><%= event.location %></span>
+          </p>
+        <% end %>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex-shrink-0">
+        <% unless event.task_created? %>
+          <%= button_to calendar_event_tasks_path(event.id),
+              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center" do %>
+            <i class="fas fa-plus mr-2"></i>
+            Generate Tasks
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Details Modal -->
+  <%= render Ui::Modal.new(id: "event-#{event.id}") do |modal| %>
+    <% modal.with_header do %>
+      <h3 class="text-xl font-semibold text-gray-900"><%= event.summary %></h3>
+    <% end %>
+
+    <% modal.with_body do %>
+      <!-- Event Time -->
+      <div class="flex items-start gap-3 text-gray-700 mb-6">
+        <i class="fas fa-clock text-gray-500 mt-1"></i>
+        <div>
+          <p class="font-medium">Time</p>
+          <p><%= event.start_time.strftime("%B %d, %Y %I:%M %p") %> - <%= event.end_time.strftime("%I:%M %p") %></p>
+        </div>
+      </div>
+
+      <!-- Event Location -->
+      <% if event.location.present? %>
+        <div class="flex items-start gap-3 text-gray-700 mb-6">
+          <i class="fas fa-map-marker-alt text-gray-500 mt-1"></i>
+          <div>
+            <p class="font-medium">Location</p>
+            <p><%= event.location %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Event Description -->
+      <% if event.description.present? %>
+        <div class="flex items-start gap-3 text-gray-700">
+          <i class="fas fa-align-left text-gray-500 mt-1"></i>
+          <div>
+            <p class="font-medium">Description</p>
+            <div class="mt-2 prose prose-sm max-w-none">
+              <%= simple_format(event.description) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% modal.with_footer do %>
+      <div class="flex justify-end">
+        <% unless event.task_created? %>
+          <%= button_to calendar_event_tasks_path(event.id),
+              class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white px-4 py-2 rounded-xl text-sm font-medium transition duration-200 backdrop-blur-xl border border-white/30 flex items-center" do %>
+            <i class="fas fa-plus mr-2"></i>
+            Generate Tasks
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
