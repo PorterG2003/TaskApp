@@ -15,10 +15,16 @@ mkdir -p storage
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
 
-# Create database if it doesn't exist
-bundle exec rails db:prepare
+# Wait for PostgreSQL
+echo "Waiting for PostgreSQL to become available..."
+while ! nc -z $POSTGRES_HOST 5432; do
+  sleep 0.1
+done
+echo "PostgreSQL is available"
 
-# Run database migrations
+# Set up database
+echo "Setting up database..."
+bundle exec rails db:schema:load
 bundle exec rails db:migrate
 
 # Ensure tmp directories exist
