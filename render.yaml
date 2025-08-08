@@ -1,0 +1,26 @@
+databases:
+  - name: taskapp_production
+    databaseName: taskapp_production
+    user: taskapp
+    plan: free
+
+services:
+  - type: web
+    name: taskapp
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: taskapp_production
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+    healthCheckPath: /
+    autoDeploy: true
