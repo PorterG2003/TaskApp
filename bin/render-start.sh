@@ -19,7 +19,13 @@ echo "PostgreSQL is available"
 
 # Set up database
 echo "Setting up database..."
+echo "Running database migrations..."
 bundle exec rails db:migrate
+echo "Database migration completed"
+
+# Check if tables exist
+echo "Checking if users table exists..."
+bundle exec rails runner "puts 'Users table exists: ' + ActiveRecord::Base.connection.table_exists?('users').to_s"
 
 # Start the application
 bundle exec puma -C config/puma.rb
