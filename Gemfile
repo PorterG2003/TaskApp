@@ -33,6 +33,9 @@ gem "google-apis-calendar_v3"
 # Environment variables
 gem "dotenv-rails"
 
+# UI Components
+gem "view_component"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 

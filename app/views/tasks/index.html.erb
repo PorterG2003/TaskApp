@@ -1,111 +1,121 @@
 <div class="w-full">
+  <!-- Header Section -->
   <div class="flex justify-between items-center mb-8">
-    <div>
+    <div class="glass-heavy bg-white/20 rounded-2xl p-6 backdrop-blur-xl border border-white/40 shadow-2xl">
       <h1 class="text-3xl font-bold text-gray-900">My Tasks</h1>
       <p class="text-gray-600 mt-1">Stay organized and get things done</p>
     </div>
-    <%= link_to new_task_path, class: "bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-sm transition duration-200 flex items-center" do %>
-      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <%= link_to new_task_path, class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white font-medium py-4 px-8 rounded-2xl shadow-2xl transition duration-200 flex items-center backdrop-blur-xl border border-white/30" do %>
+      <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
       </svg>
       Add New Task
     <% end %>
   </div>
 
+  <!-- Notice Messages -->
   <% if notice %>
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6" role="alert">
+    <div class="glass-heavy bg-green-100/30 border border-green-400/50 text-green-700 px-6 py-4 rounded-2xl mb-8 backdrop-blur-xl shadow-2xl" role="alert">
       <%= notice %>
     </div>
   <% end %>
 
-  <!-- Task Stats -->
+  <!-- Task Statistics -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    <div class="bg-blue-50 p-6 rounded-lg">
+    <!-- Total Tasks -->
+    <div class="glass-heavy bg-white/20 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
       <div class="flex items-center">
-        <div class="p-2 bg-blue-500 rounded-lg">
+        <div class="glass-heavy bg-blue-500/80 p-3 rounded-xl backdrop-blur-xl border border-white/30 mr-4">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
           </svg>
         </div>
-        <div class="ml-4">
-          <p class="text-sm font-medium text-blue-600">Total Tasks</p>
-          <p class="text-2xl font-bold text-blue-900"><%= @tasks.count %></p>
+        <div>
+          <p class="text-sm font-medium text-gray-600">Total Tasks</p>
+          <p class="text-2xl font-bold text-gray-900"><%= @tasks.count %></p>
         </div>
       </div>
     </div>
     
-    <div class="bg-yellow-50 p-6 rounded-lg">
+    <!-- Pending Tasks -->
+    <div class="glass-heavy bg-white/20 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
       <div class="flex items-center">
-        <div class="p-2 bg-yellow-500 rounded-lg">
+        <div class="glass-heavy bg-yellow-500/80 p-3 rounded-xl backdrop-blur-xl border border-white/30 mr-4">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
-        <div class="ml-4">
-          <p class="text-sm font-medium text-yellow-600">Pending</p>
-          <p class="text-2xl font-bold text-yellow-900"><%= @pending_tasks.count %></p>
+        <div>
+          <p class="text-sm font-medium text-gray-600">Pending</p>
+          <p class="text-2xl font-bold text-gray-900"><%= @pending_tasks.count %></p>
         </div>
       </div>
     </div>
     
-    <div class="bg-green-50 p-6 rounded-lg">
+    <!-- Completed Tasks -->
+    <div class="glass-heavy bg-white/20 p-6 rounded-2xl backdrop-blur-xl border border-white/40 shadow-2xl">
       <div class="flex items-center">
-        <div class="p-2 bg-green-500 rounded-lg">
+        <div class="glass-heavy bg-green-500/80 p-3 rounded-xl backdrop-blur-xl border border-white/30 mr-4">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
-        <div class="ml-4">
-          <p class="text-sm font-medium text-green-600">Completed</p>
-          <p class="text-2xl font-bold text-green-900"><%= @completed_tasks.count %></p>
+        <div>
+          <p class="text-sm font-medium text-gray-600">Completed</p>
+          <p class="text-2xl font-bold text-gray-900"><%= @completed_tasks.count %></p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Tasks List -->
-  <div class="space-y-6">
-    <!-- Pending Tasks -->
-    <% if @pending_tasks.any? %>
-      <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-900">Pending Tasks</h3>
+  <!-- Tasks Content -->
+  <div class="space-y-8">
+    <% if @tasks.any? %>
+      <!-- Pending Tasks Section -->
+      <% if @pending_tasks.any? %>
+        <div class="glass-heavy bg-white/20 rounded-2xl shadow-2xl border border-white/40 overflow-hidden backdrop-blur-xl">
+          <div class="glass-medium bg-white/30 px-6 py-4 border-b border-white/30">
+            <h3 class="text-xl font-semibold text-gray-900">Pending Tasks</h3>
+          </div>
+          <div class="divide-y divide-white/20">
+            <% @pending_tasks.each do |task| %>
+              <%= render 'task_card', task: task %>
+            <% end %>
+          </div>
         </div>
-        <div class="divide-y divide-gray-200">
-          <% @pending_tasks.each do |task| %>
-            <%= render 'task_card', task: task %>
+      <% end %>
+
+      <!-- Completed Tasks Section -->
+      <% if @completed_tasks.any? %>
+        <div class="glass-heavy bg-white/20 rounded-2xl shadow-2xl border border-white/40 overflow-hidden backdrop-blur-xl">
+          <div class="glass-medium bg-white/30 px-6 py-4 border-b border-white/30">
+            <h3 class="text-xl font-semibold text-gray-900">Completed Tasks</h3>
+          </div>
+          <div class="divide-y divide-white/20">
+            <% @completed_tasks.each do |task| %>
+              <%= render 'task_card', task: task %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <!-- Empty State -->
+      <div class="text-center py-16">
+        <div class="glass-heavy bg-white/20 rounded-3xl p-12 backdrop-blur-xl border border-white/40 shadow-2xl max-w-md mx-auto">
+          <div class="glass-heavy bg-gray-100/50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-xl border border-white/30">
+            <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">No tasks yet</h3>
+          <p class="text-gray-600 mb-8">Get started by creating your first task</p>
+          <%= link_to new_task_path, class: "glass-heavy bg-blue-600/80 hover:bg-blue-700/80 text-white font-medium py-4 px-8 rounded-2xl shadow-2xl backdrop-blur-xl border border-white/30 transition duration-200 inline-flex items-center" do %>
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            Create your first task
           <% end %>
         </div>
-      </div>
-    <% end %>
-
-    <!-- Completed Tasks -->
-    <% if @completed_tasks.any? %>
-      <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-900">Completed Tasks</h3>
-        </div>
-        <div class="divide-y divide-gray-200">
-          <% @completed_tasks.each do |task| %>
-            <%= render 'task_card', task: task %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-
-    <% if @tasks.empty? %>
-      <div class="text-center py-12">
-        <svg class="mx-auto h-24 w-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
-        </svg>
-        <h3 class="mt-4 text-lg font-medium text-gray-900">No tasks yet</h3>
-        <p class="mt-2 text-gray-500">Get started by creating your first task.</p>
-        <%= link_to new_task_path, class: "mt-4 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700" do %>
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-          </svg>
-          Create your first task
-        <% end %>
       </div>
     <% end %>
   </div>

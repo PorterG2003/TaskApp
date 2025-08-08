@@ -1,5 +1,6 @@
-<div class="px-6 py-4 hover:bg-gray-50 transition duration-150" data-controller="task">
-  <div class="flex items-center justify-between">
+<%= render Ui::Card.new(glass: true, padding: :md) do %>
+  <div class="px-6 py-4 hover:bg-white/30 transition duration-150 backdrop-blur-xl" data-controller="task">
+    <div class="flex items-center justify-between">
     <div class="flex items-center flex-1">
       <!-- Completion Checkbox -->
       <%= form_with model: task, local: false, data: { action: "submit->task#toggle", turbo_method: :patch } do |form| %>
@@ -25,15 +26,19 @@
           </h4>
           
           <!-- Priority Badge -->
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= task.priority_color %>">
-            <%= task.priority_label %>
-          </span>
+          <%= render Ui::Badge.new(
+            text: task.priority_label,
+            variant: task.priority_color_variant,
+            size: :sm
+          ) %>
           
           <!-- Overdue Badge -->
           <% if task.overdue? %>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-              Overdue
-            </span>
+            <%= render Ui::Badge.new(
+              text: "Overdue",
+              variant: :danger,
+              size: :sm
+            ) %>
           <% end %>
         </div>
         
@@ -70,4 +75,4 @@
       <% end %>
     </div>
   </div>
-</div>
+<% end %>

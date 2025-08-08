@@ -33,4 +33,15 @@ class Task < ApplicationRecord
     else "bg-gray-100 text-gray-800"
     end
   end
+
+  def priority_color_variant
+    case priority
+    when 1 then :success
+    when 2 then :primary
+    when 3 then :warning
+    when 4 then :warning
+    when 5 then :danger
+    else :secondary
+    end
+  end
 end

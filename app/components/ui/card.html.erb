@@ -1,0 +1,20 @@
+<div class="<%= card_classes %>">
+  <% if title || subtitle %>
+    <div class="<%= header_classes %>">
+      <% if title %>
+        <h3 class="<%= title_classes %>">
+          <%= title %>
+        </h3>
+      <% end %>
+      <% if subtitle %>
+        <p class="<%= subtitle_classes %>">
+          <%= subtitle %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div class="<%= attrs[:content_class] %>">
+    <%= content %>
+  </div>
+</div> 
