@@ -12,6 +12,9 @@ services:
     startCommand: "bundle exec puma -C config/puma.rb"
     env: production
     region: oregon
+    waitForServices:
+      - name: taskapp_postgres
+        type: database
     envVars:
       - key: DATABASE_URL
         fromDatabase:
