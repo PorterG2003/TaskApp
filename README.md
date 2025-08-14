@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This was my first time using Ruby on Rails. It is an app that allows the user to create a task list based their Google Calendar events. It uses Google OAuth 2 to authenticate and sync with your google calendar. It took 6 hours to build and deploy.
